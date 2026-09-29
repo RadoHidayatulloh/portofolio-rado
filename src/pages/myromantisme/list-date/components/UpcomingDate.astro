@@ -1,0 +1,64 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+
+const length = 1;
+---
+
+<Layout>
+  <div class="w-90 min-h-full m-auto">
+    <div>
+      <div class="flex items-center justify-between">
+        <div class="flex gap-2">
+          <i class="bi-calendar3 text-3xl text-red-300"></i>
+          <span class="font-bold text-2xl">wishlist</span>
+        </div>
+        <button
+          class="flex items-center gap-1"
+          onclick="window.location = '/list'"
+        >
+          <span>Lihat semua</span>
+          <span class="">
+            <i class="bi-chevron-right text-whitesmoke text-xs"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- conditional rendering -->
+    <!-- <div class="w-90 min-h-full m-auto mt-4">
+      <div>
+        {
+          length <= 0 ? (
+            <div class="w-90 p-10 border-2 rounded-xl border-stone-300 bg-stone-100 flex justify-center items-center align-center">
+              <p class="font-normal text-stone-400">Belum Terdapat Date</p>
+            </div>
+          ) : (
+            <div class="w-90 p-3 border-2 rounded-xl border-stone-200 bg-red-100 flex justify-center items-center align-center">
+              {/* Tanggal */}
+              <div class="p-2 w-18 border-red-200 bg-red-200 rounded-xl">
+                <div class="flex flex-col text-center font-normal text-black">
+                  <span class="font-md">Sab</span>
+                  <span class="text-red-300 text-xl font-bold">3</span>
+                  <span class="font-md">Okt</span>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      </div> -->
+
+    <div>
+      <div>
+        <!-- icon add whitelist -->
+        <div class="absolute bottom-20 right-7">
+          <button
+            class="p-0.5 bg-blue-400 rounded-full"
+            onclick="window.location = '/myromantisme/add'"
+          >
+            <i class="bi-plus text-4xl text-white"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

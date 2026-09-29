@@ -1,0 +1,561 @@
+---
+const categories = [
+  "Romantis",
+  "Kuliner",
+  "Wisata",
+  "Hiburan",
+  "Petualangan",
+  "Lainnya",
+];
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tambah Bucket List</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main class="app">
+      <!-- HEADER -->
+      <header class="header">
+        <a href="/myromantisme/list-date" class="back-button"> ← </a>
+
+        <h1>Tambah wishlist</h1>
+      </header>
+
+      <!-- ROMANTIC BANNER -->
+      <section class="romantic-banner">
+        <div class="banner-icon">♡</div>
+
+        <p>
+          Yuk, tambahkan rencana
+          <br />
+          seru kita selanjutnya! ♡
+        </p>
+      </section>
+
+      <!-- FORM -->
+      <form id="bucketForm">
+        <!-- JUDUL -->
+        <div class="form-group">
+          <label for="title"> Judul </label>
+
+          <div class="input-wrapper">
+            <input
+              id="title"
+              name="title"
+              type="text"
+              placeholder="Contoh: Nonton konser bersama"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- KATEGORI -->
+        <div class="form-group">
+          <label for="category"> Kategori </label>
+
+          <div class="input-wrapper select-wrapper">
+            <span class="input-icon"> ♧ </span>
+
+            <select id="category" name="category" required>
+              <option value="" selected disabled> Pilih kategori </option>
+
+              {
+                categories.map((category) => (
+                  <option value={category}>{category}</option>
+                ))
+              }
+            </select>
+
+            <span class="arrow"> ⌄ </span>
+          </div>
+        </div>
+
+        <!-- CATATAN -->
+        <div class="form-group">
+          <label for="note"> Catatan </label>
+
+          <div class="input-wrapper textarea-wrapper">
+            <span class="input-icon textarea-icon"> ▤ </span>
+
+            <textarea
+              id="note"
+              name="note"
+              placeholder="Tulis catatan khusus..."
+              rows="3"></textarea>
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="save-button">
+          <span> ▣ </span>
+
+          Simpan
+        </button>
+      </form>
+    </main>
+  </body>
+</html>
+
+<style>
+  /*
+   * RESET
+   */
+
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(body) {
+    margin: 0;
+
+    background: #f5eeee;
+
+    color: #4e4548;
+
+    font-family: "DM Sans", sans-serif;
+  }
+
+  /*
+   * APP
+   */
+
+  .app {
+    width: 100%;
+
+    max-width: 430px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding: 22px 20px 28px;
+
+    background: linear-gradient(180deg, #fffafa 0%, #fff7f8 100%);
+  }
+
+  /*
+   * HEADER
+   */
+
+  .header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    margin-bottom: 28px;
+  }
+
+  .back-button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 28px;
+
+    height: 28px;
+
+    color: #6e5057;
+
+    text-decoration: none;
+
+    font-size: 34px;
+
+    font-weight: 300;
+
+    line-height: 1;
+  }
+
+  .header h1 {
+    margin: 0;
+
+    color: #3f383a;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    letter-spacing: -0.3px;
+  }
+
+  /*
+   * BANNER
+   */
+
+  .romantic-banner {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    min-height: 105px;
+
+    margin-bottom: 24px;
+
+    padding: 17px 22px;
+
+    border: 1px solid #f5ccd5;
+
+    border-radius: 16px;
+
+    background: linear-gradient(135deg, #fff0f3, #ffeaee);
+  }
+
+  .banner-icon {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 65px;
+
+    height: 65px;
+
+    flex-shrink: 0;
+
+    color: #ed7f94;
+
+    font-size: 44px;
+
+    border: 1.5px solid #f19aaa;
+
+    transform: rotate(-8deg);
+  }
+
+  .banner-icon::before {
+    content: "";
+
+    position: absolute;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid #f19aaa;
+
+    top: -8px;
+    left: 16px;
+
+    transform: rotate(8deg);
+  }
+
+  .romantic-banner p {
+    margin: 0;
+
+    color: #956b75;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 14px;
+
+    font-style: italic;
+
+    font-weight: 500;
+
+    line-height: 1.7;
+  }
+
+  /*
+   * FORM
+   */
+
+  #bucketForm {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 19px;
+  }
+
+  .form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .form-group label {
+    color: #4c4446;
+
+    font-size: 13px;
+
+    font-weight: 600;
+  }
+
+  .form-group label span {
+    color: #92878a;
+
+    font-weight: 400;
+  }
+
+  /*
+   * INPUT
+   */
+
+  .input-wrapper {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    height: 43px;
+
+    border: 1px solid #f1d8dd;
+
+    border-radius: 12px;
+
+    background: #fffafa;
+
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .input-wrapper:focus-within {
+    border-color: #ed91a4;
+
+    box-shadow: 0 0 0 3px rgba(237, 145, 164, 0.1);
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: #5d5356;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 12px;
+  }
+
+  input,
+  select {
+    height: 100%;
+  }
+
+  input {
+    padding: 0 13px;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #b6aaae;
+  }
+
+  /*
+   * SELECT
+   */
+
+  .select-wrapper select {
+    appearance: none;
+
+    padding: 0 40px 0 42px;
+
+    cursor: pointer;
+  }
+
+  .select-wrapper .input-icon {
+    position: absolute;
+
+    left: 14px;
+
+    color: #a26c78;
+
+    font-size: 18px;
+
+    pointer-events: none;
+  }
+
+  .arrow {
+    position: absolute;
+
+    right: 14px;
+
+    color: #9d9295;
+
+    font-size: 19px;
+
+    pointer-events: none;
+  }
+
+  /*
+   * DATE
+   */
+
+  input[type="date"] {
+    padding: 0 12px 0 43px;
+
+    color: #5e5558;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+
+    position: absolute;
+
+    right: 0;
+
+    width: 100%;
+
+    cursor: pointer;
+  }
+
+  /*
+   * ICON
+   */
+
+  .input-icon {
+    position: absolute;
+
+    left: 13px;
+
+    color: #a46f7a;
+
+    font-size: 18px;
+
+    z-index: 2;
+
+    pointer-events: none;
+  }
+
+  /*
+   * DATE PLACEHOLDER
+   */
+
+  .date-placeholder {
+    position: absolute;
+
+    left: 42px;
+
+    color: #b5aaad;
+
+    font-size: 12px;
+
+    pointer-events: none;
+  }
+
+  /*
+   * TEXTAREA
+   */
+
+  .textarea-wrapper {
+    height: 67px;
+
+    align-items: flex-start;
+  }
+
+  .textarea-icon {
+    top: 13px;
+  }
+
+  textarea {
+    height: 100%;
+
+    resize: none;
+
+    padding: 12px 12px 10px 42px;
+
+    line-height: 1.5;
+  }
+
+  /*
+   * SAVE BUTTON
+   */
+
+  .save-button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    height: 43px;
+
+    margin-top: 2px;
+
+    border: 0;
+
+    border-radius: 24px;
+
+    background: linear-gradient(135deg, #f47d99, #ed6685);
+
+    color: white;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 7px 15px rgba(235, 100, 130, 0.2);
+
+    transition:
+      transform 0.15s,
+      box-shadow 0.15s;
+  }
+
+  .save-button span {
+    font-size: 18px;
+  }
+
+  .save-button:active {
+    transform: scale(0.98);
+
+    box-shadow: 0 3px 8px rgba(235, 100, 130, 0.15);
+  }
+
+  /*
+   * DESKTOP
+   */
+
+  @media (min-width: 700px) {
+    :global(body) {
+      padding: 30px 0;
+    }
+
+    .app {
+      min-height: 850px;
+
+      border-radius: 28px;
+
+      box-shadow: 0 20px 70px rgba(90, 50, 60, 0.14);
+    }
+  }
+</style>

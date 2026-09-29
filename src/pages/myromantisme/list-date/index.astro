@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+// Diperbaiki: Mengambil komponen dari folder src/components/ utama
+import Navbar from "./components/Navbar.astro";
+import Layout from "../../../layouts/Layout.astro";
+
+// Diperbaiki: Sesuai struktur gambar Anda, komponen UpcomingDate tampaknya ada di dalam subfolder local components Anda
+import UpcomingDate from "./components/UpcomingDate.astro";
+
+// Diperbaiki: Mengaktifkan kembali import gambar dengan menaikkan 3 pasang titik (../../../)
+import sunchet from "../../../assets/images/alam.jpg";
+---
+
+<Layout title="Date Planing">
+  <!-- Pembungkus Utama diberi min-h-screen dan pb-20 agar footer bawah tidak menabrak konten -->
+  <section class="min-h-screen pb-20 relative">
+    <div class="sticky top-0 z-50 bg-white rounded-xl">
+      <Navbar />
+    </div>
+
+    <div>
+      <div class="mt-3 flex justify-center">
+        <!-- Pembungkus Utama: Mengunci ukuran container & teks di dalamnya -->
+        <div
+          class="relative w-[90%] max-w-[360px] h-[180px] rounded-xl overflow-hidden"
+        >
+          <!-- Gambar: Sekarang aman karena variabel sunchet sudah di-import di atas -->
+          <Image
+            src={sunchet}
+            alt="Image Sunchet"
+            class="w-full h-full object-cover"
+          />
+
+          <!-- Overlay Konten: Menutupi seluruh permukaan gambar secara absolut -->
+          <div
+            class="absolute inset-0 bg-black/20 flex flex-col justify-between p-4 text-white"
+          >
+            <!-- Baris Teks Atas (Good Plans...) -->
+            <div class="flex flex-col gap-0.5 -rotate-6 origin-left transform">
+              <span class="text-lg md:text-xl font-normal drop-shadow-md">
+                Good Plans
+              </span>
+              <span
+                class="text-sm md:text-base font-normal flex items-center gap-2 drop-shadow-md"
+              >
+                <span>makes Better Dates</span>
+                <i class="bi-heart-fill text-red-400"></i>
+              </span>
+            </div>
+
+            <!-- Baris Teks Bawah (Bukan tentang tempatnya...) -->
+            <div
+              class="flex flex-col text-[12px] md:text-[14px] leading-tight drop-shadow-sm opacity-90"
+            >
+              <span>" Bukan tentang Tempatnya,</span>
+              <span>Tapi tentang siapa yang menemaninya. "</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="mt-7">
+      <UpcomingDate />
+    </section>
+
+    <!-- Diubah ke 'fixed' agar selalu mengunci rapi di dasar layar HP, bukan 'absolute' yang bisa melayang naik -->
+    <footer
+      class="fixed bottom-0 left-0 h-14 w-full bg-white border-t border-gray-100 flex justify-center items-center text-center z-50"
+    >
+      <div class="flex gap-20">
+        <!-- Rute disesuaikan dengan struktur folder pages Anda (myromantisme/list-date atau myromantisme/list) -->
+        <button
+          class="focus:outline-none"
+          onclick="window.location.href = '/myromantisme/list-date'"
+        >
+          <i class="bi-house text-3xl text-gray-700"></i>
+        </button>
+        <button
+          class="focus:outline-none"
+          onclick="window.location.href = '/myromantisme/list'"
+        >
+          <i class="bi-list-task text-3xl text-gray-700"></i>
+        </button>
+      </div>
+    </footer>
+  </section>
+</Layout>
