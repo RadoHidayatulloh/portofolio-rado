@@ -1,11 +1,13 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../../../layouts/Layout.astro";
+import imageCat from "../../../../assets/images/04c1c8dc522b20cbe2f7dcf844cd046e.jpg";
 
 const length = 1;
 ---
 
 <Layout>
-  <div class="w-90 min-h-full m-auto">
+  <div class="w-80 min-h-full m-auto">
     <div>
       <div class="flex items-center justify-between">
         <div class="flex gap-2">
@@ -14,13 +16,47 @@ const length = 1;
         </div>
         <button
           class="flex items-center gap-1"
-          onclick="window.location = '/list'"
+          onclick="window.location = 'myromantisme/list'"
         >
           <span>Lihat semua</span>
           <span class="">
             <i class="bi-chevron-right text-whitesmoke text-xs"></i>
           </span>
         </button>
+      </div>
+    </div>
+
+    <!-- whislist render -->
+    <div id="whislist-render">
+      <!-- <p class="text-center mt-5">loading whislist .....</p> -->
+      <div
+        class="w-full p-2.5 border-2 border-stone-400 mt-3 rounded-xl"
+        onclick="window.location.href = '/myromantisme/detail'"
+      >
+        <div class="flex gap-2">
+          <!-- images -->
+          <div class="w-[20%] -rotate-10">
+            <Image
+              src={imageCat}
+              alt={"Image cat"}
+              class={"w-15 h-20 rounded-xl"}
+            />
+          </div>
+          <!-- Text -->
+          <div class="w-[70%] mt-2">
+            <div class="flex flex-col justify-center">
+              <span>jalan Jalan</span>
+              <span class="text-xs text-truncate"
+                >pingin jalan jalan ketempat yang sangat sunyi dan nyaman.</span
+              >
+            </div>
+          </div>
+          <div class="relative top-14 right-2">
+            <i
+              class="bi-heart text-xl font-bold"
+              onclick="this.style.color = 'red';"></i>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -50,15 +86,43 @@ const length = 1;
     <div>
       <div>
         <!-- icon add whitelist -->
-        <div class="absolute bottom-35 right-7">
+        <!-- <div class="absolute bottom-35 right-7">
           <button
             class="p-0.5 bg-blue-400 rounded-full"
             onclick="window.location = '/myromantisme/add'"
           >
             <i class="bi-plus text-4xl text-white"></i>
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 </Layout>
+
+<script>
+  async function loadWhislist() {
+    try {
+      const response = await fetch("/api/get-whislist");
+      const data = await response.json();
+
+      // const container = document.getElementById("whislist-render");
+
+      // if (!container) return;
+
+      // container.textContent = "";
+
+      // data.array.forEach((whislistItems: any) => {
+      //   const li = document.createElement("li");
+      //   li.textContent = `
+
+      //   `;
+      // });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadWhislist);
+</script>
